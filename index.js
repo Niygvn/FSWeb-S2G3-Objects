@@ -15,9 +15,11 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(verilenIsim, verilenFiyat, verilenKategori){
+	let obj = {isim: verilenIsim, fiyat: verilenFiyat, kategori: verilenKategori}
+	return obj;
 }
+// console.log(MenuElemaniOlustur('Sucuklu Pizza', 200, 'Pizzalar'));
 
 
 
@@ -30,7 +32,9 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
 */
-
+// console.log(MenuElemaniOlustur('8 Adet Soğan Halkası', 25, 'Ara Sıcaklar'));
+// console.log(MenuElemaniOlustur('CocaCola Zero', 20, 'İçecekler'));
+// console.log(MenuElemaniOlustur('Kremalı Brokoli Çorbası', 30, 'Çorbalar'));
 
 
 /* Görev 2: 
@@ -49,10 +53,17 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 const burger = {
 	isim: "Burger", 
 	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
+	kategori: "Öğle Yemeği",
+	indirim: function(string){
+				if(string == 'öğretmen' || string == 'öğrenci'){
+					return burger.fiyat * 75/100
+				} if(string == 'diğer') {
+					return burger.fiyat * 90/100
+				}
+	} 
 
 }
-
+// console.log(burger.indirim('diğer'));
 
 
 ///////////////Değerlendirmeler (MVP)///////////////////
@@ -73,6 +84,8 @@ const degerlendirmeler = [
 */
 
 
+// console.log(degerlendirmeler[5].geribildirim);
+
 
 /*  Görev 4 (ototest yok):  
 	Reyna'nın geribildirimi girilmemiş! Aşağıdakileri uygulayın: (fonksiyona gerek yok) 
@@ -80,7 +93,8 @@ const degerlendirmeler = [
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
 
-
+degerlendirmeler[7].geribildirim = "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
+ // console.log(degerlendirmeler);
 
 /*  Görev 5: 
 	isim, puan, geribildirim'i içeren bir değerlendirme nesnesi oluşturup, yeni değerlendirmeyi mevcut dizinin(array) sonuna ekleyip sonuç dizisini döndüren bir fonksiyon tanımlayın. 
@@ -93,12 +107,11 @@ const degerlendirmeler = [
 	4. Güncellenmiş diziyi döndürecek
 */
 
-
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
-	
+function DegerledirmeEkle(verilenDeğerlendirme, isim, puan, geribildirim){
+	verilenDeğerlendirme.push({isim: isim, puan: puan, geribildirim: geribildirim});
+	return verilenDeğerlendirme;
 }
-
+console.log(DegerledirmeEkle(degerlendirmeler,'Muhammed', 9, 'Muhteşem yemekler!'));
 
 
 /*  Görev 6: 
@@ -112,10 +125,12 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(dizi, indeks) {
+	let metin = `${dizi[indeks].isim} isimli kişi ${dizi[indeks].puan} puan verdi ve şunları yazdı: ${dizi[indeks].geribildirim}`
+return metin;
 
 }
+// console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,8));
 
 
 
@@ -130,11 +145,13 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 	Örnek: SonDegerlendirmeyiAl(degerlendirmeler) şunu döndürmeli: "Reyna isimli kişi 3.5 puan verdi ve şunları yazdı: bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım".
 	Not: Eğer 4. görevi başarıyla yaptıysanız kişinin geribildirimi boş görünmemeli
 */
+console.clear();
 
-
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function SonDegerlendirmeyiAl(dizi) {
+	let metin = `${dizi[dizi.length - 1].isim} isimli kişi ${dizi[dizi.length - 1].puan} puan verdi ve şunları yazdı: ${dizi[dizi.length - 1].geribildirim}`
+return metin;
 } 
+console.log(SonDegerlendirmeyiAl(degerlendirmeler));
 
 
 
